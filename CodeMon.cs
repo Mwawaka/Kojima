@@ -1,9 +1,21 @@
-internal class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static string KebabToCamel(string identifier)
     {
-        var jones = "Liland";
-        int speed = 5;
-        Console.WriteLine(speed);
+        int[] pos = new int[identifier.Length];
+        for (int i = 0; i < identifier.Length; i++)
+        {
+            int characterPosition = identifier.IndexOf("-");
+            pos[i] = characterPosition;
+        }
+        for (int i = 0; i < pos.Length; i++)
+        {
+            
+        }
+    }
+    public static void Main(string[] args)
+    {
+        KebabToCamel("a-bc");
+
     }
 }
