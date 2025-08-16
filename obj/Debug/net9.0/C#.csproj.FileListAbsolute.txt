@@ -1,14 +1,29 @@
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\bin\Debug\net9.0\C#.exe
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\bin\Debug\net9.0\C#.deps.json
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\bin\Debug\net9.0\C#.runtimeconfig.json
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\bin\Debug\net9.0\C#.dll
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\bin\Debug\net9.0\C#.pdb
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\C#.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\C#.AssemblyInfoInputs.cache
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\C#.AssemblyInfo.cs
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\C#.csproj.CoreCompileInputs.cache
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\C#.dll
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\refint\C#.dll
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\C#.pdb
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\C#.genruntimeconfig.cache
-C:\Users\unmarked-user\Desktop\Unity Projects\C#\obj\Debug\net9.0\ref\C#.dll
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/bin/Debug/net9.0/C#.exe
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/bin/Debug/net9.0/C#.deps.json
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/bin/Debug/net9.0/C#.runtimeconfig.json
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/bin/Debug/net9.0/C#.dll
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/bin/Debug/net9.0/C#.pdb
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/C#.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/C#.AssemblyInfoInputs.cache
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/C#.AssemblyInfo.cs
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/C#.csproj.CoreCompileInputs.cache
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/C#.dll
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/refint/C#.dll
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/C#.pdb
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/C#.genruntimeconfig.cache
+C:/Users/unmarked-user/Desktop/Unity Projects/C#/obj/Debug/net9.0/ref/C#.dll
+/home/mwawaka/MIINDD/Kojima/bin/Debug/net9.0/C#
+/home/mwawaka/MIINDD/Kojima/bin/Debug/net9.0/C#.deps.json
+/home/mwawaka/MIINDD/Kojima/bin/Debug/net9.0/C#.runtimeconfig.json
+/home/mwawaka/MIINDD/Kojima/bin/Debug/net9.0/C#.dll
+/home/mwawaka/MIINDD/Kojima/bin/Debug/net9.0/C#.pdb
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.GeneratedMSBuildEditorConfig.editorconfig
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.AssemblyInfoInputs.cache
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.AssemblyInfo.cs
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.csproj.CoreCompileInputs.cache
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.sourcelink.json
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.dll
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/refint/C#.dll
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.pdb
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/C#.genruntimeconfig.cache
+/home/mwawaka/MIINDD/Kojima/obj/Debug/net9.0/ref/C#.dll

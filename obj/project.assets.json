@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\unmarked-user\\.nuget\\packages\\": {}
+    "/home/mwawaka/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\C#.csproj",
+      "projectUniqueName": "/home/mwawaka/MIINDD/Kojima/C#.csproj",
       "projectName": "C#",
-      "projectPath": "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\C#.csproj",
-      "packagesPath": "C:\\Users\\unmarked-user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\obj\\",
+      "projectPath": "/home/mwawaka/MIINDD/Kojima/C#.csproj",
+      "packagesPath": "/home/mwawaka/.nuget/packages/",
+      "outputPath": "/home/mwawaka/MIINDD/Kojima/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\unmarked-user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/mwawaka/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

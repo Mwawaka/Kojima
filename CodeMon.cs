@@ -1,21 +1,35 @@
+using System.Text;
+
 public class Program
 {
     public static string KebabToCamel(string identifier)
     {
-        int[] pos = new int[identifier.Length];
-        for (int i = 0; i < identifier.Length; i++)
+        StringBuilder sb = new StringBuilder();
+        bool capitalizeNext = false;
+        foreach (char ch in identifier)
         {
-            int characterPosition = identifier.IndexOf("-");
-            pos[i] = characterPosition;
+            if (ch == '-')
+            {
+                capitalizeNext = true;
+            }
+            else
+            {
+                if (capitalizeNext)
+                {
+                    sb.Append(Char.ToUpper(ch));
+                    capitalizeNext = false;
+                }
+                else
+                {
+                    sb.Append(ch);
+                }
+            }
         }
-        for (int i = 0; i < pos.Length; i++)
-        {
-            
-        }
+        return sb.ToString();
     }
     public static void Main(string[] args)
     {
-        KebabToCamel("a-bc");
+        Console.WriteLine(KebabToCamel("a-bc"));
 
     }
 }
