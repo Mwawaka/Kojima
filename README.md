@@ -90,27 +90,48 @@ class CarImporter
 ```
 
 # Constants
-The `const` modifier can be (and generally should be) applied to any field where its value is known at compile time and will not change during the lifetime of the program.
+The `const` modifier can be (and generally should be) applied to any field where its **value is known at compile time** and will not change during the lifetime of the program.
 
 ```c#
-private const int num = 1729;
-public const string title = "Grand" + " Master";
+private const int _num = 1729;
+public const string Title = "Grand" + " Master";
 ```
 
-The `readonly` modifier can be (and generally should be) applied to any field that cannot be made const where its value will not change during the lifetime of the program and is either set by an inline initializer or during instantiation (by the constructor or a method called by the constructor).
+The `readonly` modifier can be (and generally should be) applied to any field that **cannot be made const where its value will not change during the lifetime of the program** and is either set by an inline initializer or during instantiation (by the constructor or a method called by the constructor).
 
 ```c#
-private readonly int num;
+private readonly int _num;
 private readonly System.Random rand = new System.Random();
 
-public MyClass(int num)
+public MyClass(int _num)
 {
-    this.num = num;
+    this._num = _num;
 }
 ```
 
 ## Defensive Copying
-In security sensitive situations you should avoid allowing a class's public API to be circumvented by accepting and storing a method's mutable parameters or by exposing a mutable member of a class through a return value or as an `out` parameter.
+It is a programming practice used to protect a class's internal state by preventing unintended modifications to mutable objects.
+1. **Avoid storing mutable parameters directly**: When a method accepts mutable objects (e.g., lists, arrays, or other objects that can be changed) as parameters, don't store them directly in the class. Instead, create a copy of the object (a "defensive copy") to ensure the class's internal state can't be altered by external code modifying the original object.
+
+2. **Avoid exposing mutable members**: When returning an object or passing it as an `out` parameter, don't expose mutable internal fields directly. Return a copy of the mutable object instead, so external code can't modify the class's internal state.
+
+**Why this matters**: If a class stores or exposes mutable objects without copying, external code could modify those objects, bypassing the class's public API (e.g., getters/setters) and potentially breaking encapsulation or introducing security vulnerabilities.
+```java
+public class SecureClass {
+    private List<String> data;
+
+    // Constructor with defensive copying
+    public SecureClass(List<String> input) {
+        this.data = new ArrayList<>(input); // Copy to prevent external modification
+    }
+
+    // Getter with defensive copying
+    public List<String> getData() {
+        return new ArrayList<>(data); // Return a copy to prevent external modification
+    }
+}
+```
+
 
 ## Readonly Collections
 While the readonly modifier prevents the value or reference in a field from being overwritten, it offers no protection for the members of a reference type.
@@ -131,3 +152,107 @@ The Base Class Library (BCL) provides some readonly versions of collections wher
 
 `ReadOnlyDictionary<T>` exposes a `Dictionary<T>` as read-only.
 `ReadOnlyCollection<T>` exposes a `List<T>` as read-only.
+
+# Inheritance
+In C#, a class hierarchy can be defined using inheritance, which allows a derived class `(Car)` to inherit the behavior and data of its parent class `(Vehicle)`. If no parent is specified, the class inherits from the object class.
+
+Parent classes can provide functionality to derived classes in three ways:
+
+- Define a regular method.
+- Define a `virtual` method, which is like a regular method but one that derived classes can change.
+- Define an abstract method, which is a method without an implementation that derived classes must implement. A class with `abstract` methods must be marked as abstract too. Abstract classes cannot be instantiated.
+
+The `protected` access modifier allows a parent class member to be accessed in a derived class, but blocks access from other classes.
+
+Derived classes can access parent class members through the base keyword.
+
+```c#
+// Inherits from the 'object' class
+abstract class Vehicle
+{
+    // Can be overridden
+    public virtual void Drive()
+    {
+    }
+
+    // Must be overridden
+    protected abstract int Speed();
+}
+
+class Car : Vehicle
+{
+    public override void Drive()
+    {
+        // Override virtual method
+
+        // Call parent implementation
+        base.Drive();
+    }
+
+    protected override int Speed()
+    {
+        // Implement abstract method
+    }
+}
+```
+The constructor of a derived class will automatically call its parent's constructor before executing its own constructor's logic. Arguments can be passed to a parent class' constructor using the `base` keyword:
+
+```c#
+abstract class Vehicle
+{
+    protected Vehicle(int wheels)
+    {
+        Console.WriteLine("Called first");
+    }
+}
+
+class Car : Vehicle
+{
+    public Car() : base(4)
+    {
+        Console.WriteLine("Called second");
+    }
+}
+```
+
+Where more than one class is derived from a base class the two (or more) classes will often implement different versions of a base class method. This is a very important principle called `polymorphism`. For instance in a variation on the above example we show how code using Vehicle can change its behavior depending on what type of vehicle has been instantiated.
+
+```c#
+abstract class Vehicle
+{
+   public abstract string GetDescription();
+}
+
+class Car : Vehicle
+{
+   public Car()
+   {
+   }
+
+   public override string GetDescription()
+   {
+      return "Runabout";
+   }
+}
+
+class Rig : Vehicle
+{
+   public Rig()
+   {
+   }
+
+   public override string GetDescription()
+   {
+      return "Big Rig";
+   }
+}
+
+Vehicle v1 = new Car();
+Vehicle v2 = new Rig();
+
+v1.GetDescription();
+// => Runabout
+v2.GetDescription();
+// => Big private void OnRenderImage(RenderTexture src, RenderTexture dest) {
+}
+```
