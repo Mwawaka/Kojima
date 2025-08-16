@@ -1,5 +1,5 @@
 ### Type Safety
-Refers to a property in programming languages and its type system that ensures operations on data are consistent with the data's defined type. This helps prevent type errors. i.e you cannot perform arithmetic operations on type string
+Refers to a `feature` in programming languages and its type system that ensures operations on data are consistent with the data's defined type. This helps prevent type errors. i.e you cannot perform arithmetic operations on type string
 
 An alternative to casting is type conversion using the is operator. This is typically applied to reference and nullable types.
 
