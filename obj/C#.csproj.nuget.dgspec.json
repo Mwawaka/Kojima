@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/mwawaka/MIINDD/Kojima/C#.csproj": {}
+    "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\C#.csproj": {}
   },
   "projects": {
-    "/home/mwawaka/MIINDD/Kojima/C#.csproj": {
+    "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\C#.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mwawaka/MIINDD/Kojima/C#.csproj",
+        "projectUniqueName": "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\C#.csproj",
         "projectName": "C#",
-        "projectPath": "/home/mwawaka/MIINDD/Kojima/C#.csproj",
-        "packagesPath": "/home/mwawaka/.nuget/packages/",
-        "outputPath": "/home/mwawaka/MIINDD/Kojima/obj/",
+        "projectPath": "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\C#.csproj",
+        "packagesPath": "C:\\Users\\unmarked-user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\unmarked-user\\Desktop\\Unity Projects\\C#\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/mwawaka/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\unmarked-user\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

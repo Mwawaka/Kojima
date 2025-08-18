@@ -1,12 +1,12 @@
-class RemoteControlCar
+ class RemoteControlCar2
 {
-    // TODO: define the constructor for the 'RemoteControlCar' class
+ 
     private readonly int _speed;
     private readonly int _batteryDrain;
     private int _meters;
     private int _battery=100;
     
-    public RemoteControlCar(int _speed,int _batteryDrain){
+    public RemoteControlCar2(int _speed,int _batteryDrain){
         this._speed = _speed;
         this._batteryDrain = _batteryDrain;
     }
@@ -26,7 +26,7 @@ class RemoteControlCar
         
     }
 
-    public static RemoteControlCar Nitro()=>new RemoteControlCar(50,4);
+    public static RemoteControlCar2 Nitro()=>new RemoteControlCar2(50,4);
     
 }
 
@@ -38,7 +38,7 @@ class RaceTrack
         this._distance = _distance;
     }
 
-    public bool TryFinishTrack(RemoteControlCar car)
+    public bool TryFinishTrack(RemoteControlCar2 car)
     {
         
 while(!car.BatteryDrained() && car.DistanceDriven() < _distance){

@@ -1,6 +1,6 @@
 using System.Text;
 
-public class Program
+public class Kebab
 {
     public static string KebabToCamel(string identifier)
     {
@@ -26,10 +26,5 @@ public class Program
             }
         }
         return sb.ToString();
-    }
-    public static void Main(string[] args)
-    {
-        Console.WriteLine(KebabToCamel("a-bc"));
-
     }
 }
