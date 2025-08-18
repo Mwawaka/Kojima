@@ -352,4 +352,4 @@ There are three possible return values for the CompareTo method:
 - **Value is zero**: the current object is equal to the other object.
 
 ## Sort(Comparison<T>)
-Sors the elements in the entire `List<T>` using the specified `Comparison<T>`. Calling the `Sort` method results in the use of the default comparer for the class implementing `IComparable<T>` interface.
+Sors the elements in the entire `List<T>` using the specified `Comparison<T>`. Calling the `Sort` method results in the use of the default comparer for the class implementing `IComparable<T>` interface.i.e., checkout `rcc`
