@@ -308,6 +308,30 @@ catch (ArgumentException)
     Console.WriteLine("Invalid number.");
 }
 ```
+
+## Exception Filtering
+`when` is the keyword in filtering exceptions. It is placed after the catch statement and can take a` Boolean` expression containing any values in scope at the time. If the expression evaluates to true then the block associated with that catch statement is executed otherwise the next catch statement, if any, is checked.
+
+```c#
+try
+{
+    // do stuff
+}
+catch (Exception ex) when (ex.Message != "")
+{
+    // output the message when it is not empty
+}
+catch (Exception ex)
+{
+    // show stack trace or something.
+}
+```
+
+## User Defined Exceptions
+A user-defined exception is any class defined in your code that is derived from System.Exception. It is subject to all the rules of class inheritance but in addition the compiler and language runtime treat such classes in a special way allowing their instances to be thrown and caught outside the normal control flow as discussed in the exceptions exercise.
+
+User-defined exceptions are often used to carry extra information such as a message and other relevant data to be made available to the catching routines.
+
 # Interfaces
 An interface is a type containing members defining a group of related functionality. It distances the uses of a class from the implementation allowing multiple different implementations or support for some generic behavior such as formatting, comparison or conversion.
 
