@@ -1,39 +1,38 @@
-public enum LogLevel
+static class Appointment
 {
-    Unknown,
-    Trace,
-    Debug,
-    Info = 4,
-    Warning,
-    Error,
-    Fatal = 42,
-}
+    public static DateTime Schedule(string appointmentDateDescription) => new DateTime(2019, 7, 25, 13, 45, 0);
 
-public static class LogLine
-{
-    public static LogLevel ParseLogLevel(string logLine)
+    public static bool HasPassed(DateTime appointmentDate)
     {
+        DateTime today = DateTime.Today;
 
-        string levels = logLine.Substring(1, 3);
-        switch (levels)
+        int time = appointmentDate.CompareTo(today);
+
+        if (time < 0)
         {
-            case "TRC":
-                return LogLevel.Trace;
-            case "DBG":
-                return LogLevel.Debug;
-            case "INF":
-                return LogLevel.Info;
-            case "WRN":
-                return LogLevel.Warning;
-            case "ERR":
-                return LogLevel.Error;
-            case "FTL":
-                return LogLevel.Fatal;
-            default:
-                return LogLevel.Unknown;
-
+            return true;
         }
+        return false;
+
     }
 
-    public static string OutputForShortLog(LogLevel logLevel, string message) => $"{(int)logLevel}:{message}";
+    public static bool IsAfternoonAppointment(DateTime appointmentDate)
+    {
+        return false;
+    }
+
+    public static string Description(DateTime appointmentDate)
+    {
+        return "hello";
+    }
+
+    public static DateTime AnniversaryDate()
+    {
+        return new DateTime();
+    }
+    public static void Main(string[] args)
+    {
+
+    }
 }
+// September 15 2012

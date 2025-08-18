@@ -385,3 +385,57 @@ The textual representation of dates and times is dependent on the `culture`. Con
 Converting this DateTime to a string when using the en-US culture (American English) returns "3/28/19 2:30:59 PM". When using the fr-BE culture (Belgian French), the same code returns a different value: "28/03/19 14:30:59".
 
 Understanding which DateTime methods are culture-dependent is important to know. In general, any DateTime method that deals with `strings` (either as input or output) will be dependent on the current culture.
+
+# Dictionaries
+A dictionary is a collection of elements where each element comprises a key and value such that if a key is passed to a method of the dictionary its associated value is returned. It has the same role as maps or associative arrays do in other languages.
+
+A dictionary can be created as follows:
+
+```c#
+new Dictionary<int, string>();
+// Empty dictionary
+
+new Dictionary<int, string>
+{
+    [1] = "One",
+    [2] = "Two"
+};
+
+new Dictionary<int, string>
+{
+    {1, "One"},
+    {2, "Two"}
+};
+// 1 => "One", 2 => "Two"
+```
+
+Note that the key and value types are part of the definition of the dictionary.
+
+Once constructed, entries can be added or removed from a dictionary using its built-in methods `Add` and `Remove`.
+
+Retrieving or updating values in a dictionary is done by indexing into the dictionary using a key:
+
+```c#
+var numbers = new Dictionary<int, string>
+{
+   {1, "One"},
+   {2, "Two"}
+};
+
+// Set the value of the element with key 2 to "Deux"
+numbers[2] = "Deux";
+
+// Get the value of the element with key 2
+numbers[2];
+// => "Deux"
+```
+
+You can test if a value exists in the dictionary with:
+
+```c#
+var dict = new Dictionary<string, string>{/*...*/};
+dict.ContainsKey("some key that exists");
+// => true
+```
+
+Enumerating over a dictionary will enumerate over its key/value pairs. Dictionaries also have properties that allow enumerating over its keys or values.
