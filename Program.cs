@@ -1,44 +1,47 @@
-public enum AccountType
+static class SavingsAccount
 {
-    Guest,
-    User,
-    Moderator
-}
-
-// uses binary
-[Flags]
-public enum Permission
-{
-    None = 0, //0000
-    Read = 1, //0001
-    Write = 2, //0010
-    Delete = 4, //0100
-    All = Read | Write | Delete //0111
-}
-
-static class Permissions
-{
-    public static Permission Default(AccountType accountType) => accountType switch
+    public static float InterestRate(decimal balance)
     {
-        AccountType.Guest => Permission.Read,
-        AccountType.User => Permission.Read | Permission.Write,
-        AccountType.Moderator => Permission.All,
-        _ => Permission.None
-    };
-
-
-    public static Permission Grant(Permission current, Permission grant)
-    {
-        return Permission.None;
+        if (balance < 0m)
+        {
+            return 3.213f;
+        }
+        else if (balance < 1000m)
+        {
+            return 0.5f;
+        }
+        else if (balance < 5000m)
+        {
+            return 1.621f;
+        }
+        else
+        {
+            return 2.475f;
+        }
     }
 
-    public static Permission Revoke(Permission current, Permission revoke)
+    public static decimal Interest(decimal balance)
     {
-        return Permission.None;
+        float interestRate = InterestRate(balance);
+        return balance * (decimal)interestRate / 100;
     }
 
-    public static bool Check(Permission current, Permission check)
+    public static decimal AnnualBalanceUpdate(decimal balance) => balance + Interest(balance);
+
+    public static int YearsBeforeDesiredBalance(decimal balance, decimal targetBalance)
     {
-        return false;
+        int years = 0;
+        decimal currentBalance = balance;
+        while (currentBalance < targetBalance)
+        {
+            currentBalance += Interest(currentBalance);
+            years++;
+            Console.WriteLine("Initial Balance: {0} Year {1}", currentBalance, years);
+        }
+        return years;
+    }
+    public static void Main(string[] args)
+    {
+        YearsBeforeDesiredBalance(100.0m, 125.80m);
     }
 }
