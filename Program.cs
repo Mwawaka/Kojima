@@ -1,140 +1,44 @@
-public class WeatherStation
+public enum AccountType
 {
-    private Reading reading;
-    private List<DateTime> recordDates = new List<DateTime>();
-    private List<decimal> temperatures = new List<decimal>();
-
-    public void AcceptReading(Reading reading)
-    {
-        this.reading = reading;
-        recordDates.Add(DateTime.Now);
-        temperatures.Add(reading.Temperature);
-    }
-
-    public void ClearAll()
-    {
-        reading = new Reading();
-        recordDates.Clear();
-        temperatures.Clear();
-    }
-
-    public decimal LatestTemperature
-    {
-        get => reading.Temperature;
-    }
-
-    public decimal LatestPressure
-    {
-        get => reading.Pressure;
-    }
-
-    public decimal LatestRainfall
-    {
-        get => reading.Rainfall;
-    }
-
-    public bool HasHistory
-    {
-        get => recordDates.Count > 1 ? true : false;
-    }
-
-    public Outlook ShortTermOutlook
-    {
-        get
-        {
-            if (reading.Equals(new Reading()))
-            {
-                throw new ArgumentException();
-            }
-            else
-            {
-                if (reading.Pressure < 10m && reading.Temperature < 30m)
-                {
-                    return Outlook.Cool;
-                }
-                else if (reading.Temperature > 50)
-                {
-                    return Outlook.Good;
-                }
-                else
-                {
-                    return Outlook.Warm;
-                }
-            }
-        }
-    }
-
-    public Outlook LongTermOutlook
-    {
-        get
-        {
-            if (reading.WindDirection == WindDirection.Southerly
-                || reading.WindDirection == WindDirection.Easterly
-                && reading.Temperature > 20)
-            {
-                return Outlook.Good;
-            }
-            if (reading.WindDirection == WindDirection.Northerly)
-            {
-                return Outlook.Cool;
-            }
-            if (reading.WindDirection == WindDirection.Easterly
-                && reading.Temperature <= 20)
-            {
-                return Outlook.Warm;
-            }
-
-            if (reading.WindDirection == WindDirection.Westerly)
-            {
-                return Outlook.Rainy;
-            }
-            throw new ArgumentException();
-        }
-    }
-
-    public State RunSelfTest() => reading.Equals(new Reading()) ? State.Bad : State.Good;
+    Guest,
+    User,
+    Moderator
 }
 
-/*** Please do not modify this struct ***/
-public struct Reading
+// uses binary
+[Flags]
+public enum Permission
 {
-    public decimal Temperature { get; }
-    public decimal Pressure { get; }
-    public decimal Rainfall { get; }
-    public WindDirection WindDirection { get; }
+    None = 0, //0000
+    Read = 1, //0001
+    Write = 2, //0010
+    Delete = 4, //0100
+    All = Read | Write | Delete //0111
+}
 
-    public Reading(decimal temperature, decimal pressure,
-        decimal rainfall, WindDirection windDirection)
+static class Permissions
+{
+    public static Permission Default(AccountType accountType) => accountType switch
     {
-        Temperature = temperature;
-        Pressure = pressure;
-        Rainfall = rainfall;
-        WindDirection = windDirection;
+        AccountType.Guest => Permission.Read,
+        AccountType.User => Permission.Read | Permission.Write,
+        AccountType.Moderator => Permission.All,
+        _ => Permission.None
+    };
+
+
+    public static Permission Grant(Permission current, Permission grant)
+    {
+        return Permission.None;
     }
-}
 
-/*** Please do not modify this enum ***/
-public enum State
-{
-    Good,
-    Bad
-}
+    public static Permission Revoke(Permission current, Permission revoke)
+    {
+        return Permission.None;
+    }
 
-/*** Please do not modify this enum ***/
-public enum Outlook
-{
-    Cool,
-    Rainy,
-    Warm,
-    Good
-}
-
-/*** Please do not modify this enum ***/
-public enum WindDirection
-{
-    Unknown, // default
-    Northerly,
-    Easterly,
-    Southerly,
-    Westerly
+    public static bool Check(Permission current, Permission check)
+    {
+        return false;
+    }
 }
