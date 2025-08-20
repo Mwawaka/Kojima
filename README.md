@@ -869,3 +869,29 @@ string? vegetable = null;
 vegetable?.Length; // => null
 ```
 
+# Object Initializers
+Object initializers are an alternative to constructors. The syntax is illustrated below. You provide a comma separated list of name-value pairs separated with = within curly brackets:
+```c#
+public class Person
+{
+    public string Name;
+    public string Address;
+}
+
+var person = new Person{Name="The President", Address = "Élysée Palace"};
+```
+
+Collections can also be initialized in this way. Typically, this is accomplished with comma separated lists as shown here:
+
+```c#
+IList<Person> people = new List<Person>{ new Person(), new Person{Name="Joe Shmo"}};
+```
+Dictionaries use the following syntax:
+
+```c#
+IDictionary<int, string> numbers = new Dictionary<int, string>{ [0] = "zero", [1] = "one"...};
+
+// or
+
+IDictionary<int, string> numbers = new Dictionary<int, string>{ {0, "zero" }, {1,  "one"}...};
+```
