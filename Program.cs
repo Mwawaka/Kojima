@@ -1,6 +1,6 @@
 public class RemoteControlCar
 {
-    public string CurrentSponsor { get; private set; }
+    public string CurrentSponsor { get; private set; } = "";
     private Speed currentSpeed;
     public TelemetrySys Telemetry { get; }
 
@@ -47,4 +47,14 @@ public class RemoteControlCar
     public string GetSpeed() => currentSpeed.ToString();
     private void SetSponsor(string sponsorName) => CurrentSponsor = sponsorName;
     private void SetSpeed(Speed speed) => currentSpeed = speed;
+    public static void Main(string[] args)
+    {
+        var car = new RemoteControlCar();
+        car.Telemetry.Calibrate();
+        car.Telemetry.SelfTest();
+        car.Telemetry.ShowSponsor("Walker Industries Inc.");
+        Console.WriteLine(car.CurrentSponsor);
+        car.Telemetry.SetSpeed(100, "cps");
+        car.GetSpeed();
+    }
 }

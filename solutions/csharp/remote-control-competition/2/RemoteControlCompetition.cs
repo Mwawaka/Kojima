@@ -1,4 +1,3 @@
-// TODO implement the IRemoteControlCar interface
 
 public interface IRemoteControlCar{
     int DistanceTravelled {get; }
