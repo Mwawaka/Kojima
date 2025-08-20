@@ -1,47 +1,46 @@
-static class SavingsAccount
+public static class Languages
 {
-    public static float InterestRate(decimal balance)
+    public static List<string> NewList() => new List<string>();
+    public static List<string> GetExistingLanguages() => new List<string>{
+            "C#",
+            "Clojure",
+            "Elm"
+        };
+    public static List<string> AddLanguage(List<string> languages, string language)
     {
-        if (balance < 0m)
+        languages.Add(language);
+        return languages;
+    }
+
+    public static int CountLanguages(List<string> languages) => languages.Count;
+    public static bool HasLanguage(List<string> languages, string language) => languages.Contains(language);
+    public static List<string> ReverseList(List<string> languages)
+    {
+        languages.Reverse();
+        return languages;
+    }
+
+    public static bool IsExciting(List<string> languages)
+    {
+        if (languages.Count == 0 || languages.Count > 3)
         {
-            return 3.213f;
-        }
-        else if (balance < 1000m)
-        {
-            return 0.5f;
-        }
-        else if (balance < 5000m)
-        {
-            return 1.621f;
+            return false;
         }
         else
         {
-            return 2.475f;
+            if (languages[0] == "C#" || languages[1] == "C#")
+            {
+                return true;
+            }
+            return false;
         }
     }
-
-    public static decimal Interest(decimal balance)
+    public static List<string> RemoveLanguage(List<string> languages, string language)
     {
-        float interestRate = InterestRate(balance);
-        return balance * (decimal)interestRate / 100;
+        languages.Remove(language);
+        return languages;
     }
 
-    public static decimal AnnualBalanceUpdate(decimal balance) => balance + Interest(balance);
-
-    public static int YearsBeforeDesiredBalance(decimal balance, decimal targetBalance)
-    {
-        int years = 0;
-        decimal currentBalance = balance;
-        while (currentBalance < targetBalance)
-        {
-            currentBalance += Interest(currentBalance);
-            years++;
-            Console.WriteLine("Initial Balance: {0} Year {1}", currentBalance, years);
-        }
-        return years;
-    }
-    public static void Main(string[] args)
-    {
-        YearsBeforeDesiredBalance(100.0m, 125.80m);
-    }
+    public static bool IsUnique(List<string> languages) =>
+       languages.Distinct().Count() == languages.Count;
 }
