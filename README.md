@@ -1,4 +1,4 @@
-### Type Safety
+# Type Safety
 Refers to a `feature` in programming languages and its type system that ensures operations on data `are consistent with the data's defined type`. This helps prevent type errors. i.e you cannot perform arithmetic operations on type string
 
 An alternative to casting is type conversion using the is operator. This is typically applied to reference and nullable types.
@@ -22,7 +22,7 @@ o is List<int> // true
 o.GetType() == typeof(List<int>) // true
 // 
 ```
-# Floating Point Numbers
+## Floating Point Numbers
 A floating-point number is a number with zero or more digits behind the decimal separator. Examples are -2.4, 0.1, 3.14, 16.984025 and 1024.0.
 
 Different floating-point types can store different numbers of digits after the digit separator - this is referred to as its precision.
@@ -32,6 +32,24 @@ C# has three floating-point types:
 - **float**: 4 bytes (~6-9 digits precision). Written as `2.45f`.
 - **double**: 8 bytes (~15-17 digits precision). This is the most common type. Written as 2.45 or `2.45d`.
 - **decimal**: 16 bytes (28-29 digits precision). Normally used when working with monetary data, as its precision reduces the chance of rounding errors. Written as` 2.45m`.
+
+## Nested Types
+C# types can be defined within the scope of a class or struct. The enclosing type provides a kind of `namespace`. Access to the type is through the enclosing type with dot syntax.
+
+```c#
+class Outer
+{
+    public interface IInner {}
+    public enum EInner {}
+    public class CInner {}
+    public struct SInner {}
+}
+
+var outer = new Outer();
+var inner = new Outer.CInner();
+```
+You can set access levels for inner types.
+Private members of the outer type are in scope for members of the inner type but not vice versa.
 
 # Classes
 The primary object-oriented construct in C# is the class, which is a combination of data (fields) and behavior (methods). The fields and methods of a class are known as its members.
