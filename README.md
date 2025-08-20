@@ -50,6 +50,7 @@ var inner = new Outer.CInner();
 ```
 You can set access levels for inner types.
 Private members of the outer type are in scope for members of the inner type but not vice versa.
+**Check out Remote Control Cleanup😅**
 
 # Classes
 The primary object-oriented construct in C# is the class, which is a combination of data (fields) and behavior (methods). The fields and methods of a class are known as its members.

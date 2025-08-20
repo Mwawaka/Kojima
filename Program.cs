@@ -1,46 +1,86 @@
-public static class Languages
+public class RemoteControlCar
 {
-    public static List<string> NewList() => new List<string>();
-    public static List<string> GetExistingLanguages() => new List<string>{
-            "C#",
-            "Clojure",
-            "Elm"
-        };
-    public static List<string> AddLanguage(List<string> languages, string language)
+    public string CurrentSponsor { get; private set; }
+    private Speed currentSpeed;
+    public TelemetrySystem Telemetry { get; }
+
+    public RemoteControlCar()
     {
-        languages.Add(language);
-        return languages;
+        Telemetry = new TelemetrySystem(this);
     }
 
-    public static int CountLanguages(List<string> languages) => languages.Count;
-    public static bool HasLanguage(List<string> languages, string language) => languages.Contains(language);
-    public static List<string> ReverseList(List<string> languages)
-    {
-        languages.Reverse();
-        return languages;
-    }
 
-    public static bool IsExciting(List<string> languages)
+
+     public class TelemetrySystem
     {
-        if (languages.Count == 0 || languages.Count > 3)
+        private readonly RemoteControlCar _car;
+        public TelemetrySystem(RemoteControlCar car)
         {
-            return false;
+            _car = car;
         }
-        else
+        public void Calibrate()
         {
-            if (languages[0] == "C#" || languages[1] == "C#")
+
+        }
+
+        public bool SelfTest()
+        {
+            return true;
+        }
+
+        public void ShowSponsor(string sponsorName)
+        {
+           _car.SetSponsor(sponsorName);
+        }
+
+        public void SetSpeed(decimal amount, string unitsString)
+        {
+            SpeedUnits speedUnits = SpeedUnits.MetersPerSecond;
+            if (unitsString == "cps")
             {
-                return true;
+                speedUnits = SpeedUnits.CentimetersPerSecond;
             }
-            return false;
+
+           _car.SetSpeed(new Speed(amount, speedUnits));
         }
     }
-    public static List<string> RemoveLanguage(List<string> languages, string language)
+    struct Speed
     {
-        languages.Remove(language);
-        return languages;
-    }
+        public decimal Amount { get; }
+        public SpeedUnits SpeedUnits { get; }
 
-    public static bool IsUnique(List<string> languages) =>
-       languages.Distinct().Count() == languages.Count;
+        public Speed(decimal amount, SpeedUnits speedUnits)
+        {
+            Amount = amount;
+            SpeedUnits = speedUnits;
+        }
+
+        public override string ToString()
+        {
+            string unitsString = "meters per second";
+            if (SpeedUnits == SpeedUnits.CentimetersPerSecond)
+            {
+                unitsString = "centimeters per second";
+            }
+
+            return Amount + " " + unitsString;
+        }
+    }
+    enum SpeedUnits
+    {
+        MetersPerSecond,
+        CentimetersPerSecond
+    }
+    public string GetSpeed() => currentSpeed.ToString();
+    private void SetSponsor(string sponsorName) => CurrentSponsor = sponsorName;
+    private void SetSpeed(Speed speed) => currentSpeed = speed;
+
+
+    public static void Main(string[] args)
+    {
+        var car = new RemoteControlCar();
+        car.Telemetry.Calibrate();
+        car.Telemetry.SelfTest();
+        car.Telemetry.ShowSponsor("Walker Industries Inc.");
+    }
 }
