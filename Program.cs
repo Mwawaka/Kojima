@@ -1,60 +1,59 @@
-public class RemoteControlCar
+public struct Coord
 {
-    public string CurrentSponsor { get; private set; } = "";
-    private Speed currentSpeed;
-    public TelemetrySys Telemetry { get; }
-
-    public RemoteControlCar()
+    public Coord(ushort x, ushort y)
     {
-        Telemetry = new TelemetrySys(this);
+        X = x;
+        Y = y;
     }
 
-    public class TelemetrySys
-    {
-        private readonly RemoteControlCar _car;
-        public TelemetrySys(RemoteControlCar car) => _car = car;
-        public void Calibrate() { }
-        public bool SelfTest() => true;
-        public void ShowSponsor(string sponsorName) => _car.SetSponsor(sponsorName);
+    public ushort X { get; }
+    public ushort Y { get; }
+}
 
-        public void SetSpeed(decimal amount, string unitsString) =>
-           _car.SetSpeed(new Speed(amount, unitsString == "cps" ? SpeedUnits.CentimetersPerSecond : SpeedUnits.MetersPerSecond));
+public struct Plot
+{
+    public Coord Coord1;
+    public Coord Coord2;
+    public Coord Coord3;
+    public Coord Coord4;
+
+    public Plot(Coord cord1, Coord cord2, Coord cord3, Coord cord4)
+    {
+        Coord1 = cord1;
+        Coord2 = cord2;
+        Coord3 = cord3;
+        Coord4 = cord4;
+    }
+}
+
+
+public class ClaimsHandler
+{
+    private readonly HashSet<Plot> Claims = new HashSet<Plot>();
+    private Plot _lastClaim;
+
+    public void StakeClaim(Plot plot)
+    {
+        Claims.Add(plot);
+        _lastClaim = plot;
+    }
+
+    public bool IsClaimStaked(Plot plot)
+    {
+
+        return Claims.Contains(plot);
+    }
+
+    public bool IsLastClaim(Plot plot)
+    {
+
+        return plot.Equals(_lastClaim);
 
     }
-    struct Speed
-    {
-        public decimal Amount { get; }
-        public SpeedUnits SpeedUnits { get; }
 
-        public Speed(decimal amount, SpeedUnits speedUnits)
-        {
-            Amount = amount;
-            SpeedUnits = speedUnits;
-        }
-
-        public override string ToString()
-        {
-
-            string unitsString = SpeedUnits == SpeedUnits.CentimetersPerSecond ? "centimeters per second" : "meters per second";
-            return $"{Amount} {unitsString}";
-        }
-    }
-    enum SpeedUnits
+    public Plot GetClaimWithLongestSide()
     {
-        MetersPerSecond,
-        CentimetersPerSecond
-    }
-    public string GetSpeed() => currentSpeed.ToString();
-    private void SetSponsor(string sponsorName) => CurrentSponsor = sponsorName;
-    private void SetSpeed(Speed speed) => currentSpeed = speed;
-    public static void Main(string[] args)
-    {
-        var car = new RemoteControlCar();
-        car.Telemetry.Calibrate();
-        car.Telemetry.SelfTest();
-        car.Telemetry.ShowSponsor("Walker Industries Inc.");
-        Console.WriteLine(car.CurrentSponsor);
-        car.Telemetry.SetSpeed(100, "cps");
-        car.GetSpeed();
+        return new Plot();
+
     }
 }
