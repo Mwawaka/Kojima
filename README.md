@@ -921,50 +921,95 @@ Expressions of type `decimal` will throw an instance of `OverflowException`.
 # Parameters
 Parameters convey information from a calling method to a called method.
 
-The behavior of parameters can be modified by the use of modifiers such as `ref` and `out`.
+In C#, when you pass a variable to a method, it's usually **passed by value**, meaning the method gets a copy of the variable's value, and changes to that copy don't affect the original variable.
 
-## out 
-A parameter with the `out` modifier conveys a value back from the called method to the caller. The parameter can be passed to the called method without being initialized and in any case it is treated within the called method as if, on entry, it had not been initialized. 
-
-An understanding of the behavior and rules regarding parameter modifiers can be gained most easily through examples (see below) and compiler messages.
-
-```c#
-void Foo(out int val)
-{
-    val = 42;
-}
-void Bar(int val)
-{
-    val = 42;
-}
-
-int importantValue = 1729;
-Foo(out importantValue);
-var result = importantValue == 42;
-// => true
-
-importantValue = 1729;
-Bar(importantValue);
-result = importantValue == 1729;
-// => true
-```
-out parameters `must be assigned to within a called method`.
+`ref` and `out` are keywords that change this behavior by allowing a method to modify the original value passed to it. They both pass variables by **reference**.
 
 ## ref
-A parameter with the `ref` modifier passes a value into a called method. When the method returns the caller will find any updates made by the called method in that parameter.
+Allows a method to modify the original variable passed to it. The variable must already have a value`(be initialized)` before it's passed to the method.
+
+The method can then read or change the value, and any changes will affect the original variable.
+
+Use ref when you want the method to both read and potentially modify the original variable.
 
 ```c#
-void Foo(ref int val)
+class Program
 {
-    val *= 7;
-}
+    static void DoubleNumber(ref int number)
+    {
+        number = number * 2; // The method modifies the original variable
+    }
 
-int importantValue = 6;
-Foo(ref importantValue);
-return importantValue;
-// => 42
+    static void Main()
+    {
+        int myNumber = 5; // The variable must have a value
+        Console.WriteLine($"Before: {myNumber}"); // Prints: Before: 5
+        DoubleNumber(ref myNumber); // Pass the variable with ref
+        Console.WriteLine($"After: {myNumber}"); // Prints: After: 10
+    }
+}
 ```
 
-`ref` parameters must be variables as the called method will be operating directly on the parameter as seen by the caller.
+## out
+Allows a method to modify the original variable, but the variable **doesn't need to be initialized** before being passed. The method `must assign` a value to the out parameter before it returns
 
-The out and ref modifiers are required both in the called method signature and at the call site.
+Used when the method's job is to produce a value for the variable, and you don't care about its initial value.
+
+```c#
+class Program
+{
+    static bool TrySquareNumber(int input, out int result)
+    {
+        if (input >= 0)
+        {
+            result = input * input; // The method must set result
+            return true; // Success
+        }
+        else
+        {
+            result = 0; // Must still set result, even on failure
+            return false; // Failure
+        }
+    }
+
+    static void Main()
+    {
+        int myResult; // No need to initialize
+        bool success = TrySquareNumber(4, out myResult);
+        if (success)
+            Console.WriteLine($"Square is: {myResult}"); // Prints: Square is: 16
+        else
+            Console.WriteLine($"Failed, result is: {myResult}");
+    }
+}
+```
+
+# Properties
+A property in C# is a member of a class that provides access to data within that class. Callers can set or retrieve `(get)` the data. 
+
+Properties can be either auto-implemented or have a backing field. They comprise a `set accessor and/or a get accessor`. In some other languages a "mutator" is roughly equivalent to a set accessor and an "accessor" is roughly equivalent to a get accessor although the composition of the syntax is completely different.
+
+When setting a property the input value can be validated, formatted or otherwise manipulated and in fact any programmatic operation accessible to code in the class can be executed.
+
+Similarly when retrieving a property data can be calculated or formatted and again any programmatic operation available to the class can be executed.
+
+Properties have access modifiers (public, private etc.) in the same way as other class members but the **set accessor may have an access level independent of the retrieve (get) accessor** and vice versa. A property doesn't have to have both accessors, it can have just one (either get or set).
+
+The basic syntax to express properties can take two forms:
+
+## Field/Expression Backed Properties:
+
+```c#
+private int myField;
+public int MyProperty
+{
+    get { return myField; }
+    set { myField = value; }
+}
+```
+## Auto-implemented Properties
+
+```c#
+public int MyProperty { get; private set; } = 42;
+```
+Initialization is optional.
