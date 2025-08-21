@@ -1013,3 +1013,49 @@ public int MyProperty
 public int MyProperty { get; private set; } = 42;
 ```
 Initialization is optional.
+
+# Structs
+Similar to classes, but it is a `value type` whereas a class is a  `reference type`.  For example, when we assign the value of obj1 to obj2, obj2 refers to the same object as obj1. So an update to obj2 updates the value of obj1 automatically(that's why its a reference type). Contrary when we assign one struct variable to another, the value of the struct gets copied to the assigned variable. So updating one struct doesn't affect the other.
+
+```c#
+struct Employee  {
+  public int id;
+}
+// declare emp of struct Employee
+Employee emp;
+
+// access member of struct      
+emp.id = 1;
+```
+Structs can also include constructors.
+```c#
+struct Employee {
+
+  public int id;
+
+  // constructor 
+  public Employee(int employeeId) {
+   id = employeeId
+  }
+}
+```
+## Struct with properties
+```c#
+ struct Employee {
+    public int id;
+    
+    // creates property
+    public int Id {
+
+      // returns id field
+      get {
+        return id;
+      }
+
+      // sets id field
+      set {
+        id = value;
+      }
+    }
+  }
+```
