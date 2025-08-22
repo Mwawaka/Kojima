@@ -1,37 +1,47 @@
-public enum Color
+public class HighScores
 {
-    black,
-    brown,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    violet,
-    grey,
-    white
-}
-
-public static class ResistorColor
-{
-    public static int ColorCode(string color) => color switch
+    public List<int> ListScores;
+    public HighScores(List<int> list)
     {
-        "black" => 0,
-        "brown" => 1,
-        "red" => 2,
-        "orange" => 3,
-        "yellow" => 4,
-        "green" => 5,
-        "blue" => 6,
-        "violet" => 7,
-        "grey" => 8,
-        "white" => 9,
-        _ => 0,
+        ListScores = list;
+    }
 
-    };
+    public List<int> Scores() => ListScores;
+    public int Latest() => ListScores[ListScores.Count - 1];
+    public int PersonalBest() => SortList(ListScores)[0];
 
+    public List<int> PersonalTopThree()
+    {
+        List<int> sortedList = SortList(ListScores);
+        if (sortedList.Count == 1)
+        {
+            return sortedList;
+        }
+        else if (sortedList.Count == 2)
+        {
+            return new List<int>{
+                sortedList[0],
+                sortedList[1]
+            };
+        }
+        else
+        {
+            return new List<int>{
+                sortedList[0],
+                sortedList[1],
+                sortedList[2]
+            };
+        }
+    }
 
-    public static string[] Colors() => [ "black", "brown","red","orange", "yellow", "green","blue", "violet", "grey", "white"
-    ];
-
+    public List<int> SortList(List<int> list)
+    {
+        List<int> newList = [.. list];
+        if (list.Count == 1)
+        {
+            return newList;
+        }
+        newList.Sort((a, b) => b.CompareTo(a));
+        return newList;
+    }
 }
