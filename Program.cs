@@ -1,77 +1,70 @@
-public struct Coord
+public static class PlayAnalyzer
 {
-    public Coord(ushort x, ushort y)
+    public static string AnalyzeOnField(int shirtNum)
     {
-        X = x;
-        Y = y;
-    }
-
-    public ushort X { get; }
-    public ushort Y { get; }
-}
-
-public struct Plot
-{
-    public Coord Coord1;
-    public Coord Coord2;
-    public Coord Coord3;
-    public Coord Coord4;
-
-    public Plot(Coord cord1, Coord cord2, Coord cord3, Coord cord4)
-    {
-        Coord1 = cord1;
-        Coord2 = cord2;
-        Coord3 = cord3;
-        Coord4 = cord4;
-    }
-}
-
-
-public class ClaimsHandler
-{
-    private readonly HashSet<Plot> Claims = new HashSet<Plot>();
-    private Plot _lastClaim;
-
-    public void StakeClaim(Plot plot)
-    {
-        Claims.Add(plot);
-        _lastClaim = plot;
-    }
-
-    public bool IsClaimStaked(Plot plot)
-    {
-
-        return Claims.Contains(plot);
-    }
-
-    public bool IsLastClaim(Plot plot)
-    {
-
-        return plot.Equals(_lastClaim);
-
-    }
-
-    public Plot GetClaimWithLongestSide()
-    {
-        Plot longestPlot = Claims.First();
-        double maxLength = 0;
-
-        foreach (Plot plot in Claims)
+        return shirtNum switch
         {
-            double width = Math.Sqrt(Math.Pow(plot.Coord2.X - plot.Coord1.X, 2) + Math.Pow(plot.Coord2.Y - plot.Coord1.Y, 2));
+            1 => "goalie",
+            2 => "left back",
+            3 or 4 => "center back",
+            5 =>
+                "right back",
+            >= 6 and <= 8 => "midfielder",
+            9 => "left wing",
+            10 => "striker",
+            11 => "right wing",
+            _ => "UNKNOWN",
+        };
+    }
 
-            double height = Math.Sqrt(Math.Pow(plot.Coord3.X - plot.Coord1.X, 2) + Math.Pow(plot.Coord3.Y - plot.Coord1.Y, 2));
+    public static string AnalyzeOffField(object report) => report switch
+    {
+        int => $"There are {report} supporters at the match.",
+        string => $"{report}",
+        Foul => "The referee deemed a foul.",
 
-            double currentMax = Math.Max(width, height);
+        // case  Injury {player: var player}
+        Injury injury => $"Oh no! {injury.GetDescription()} Medics are on the field.",
+        Incident => "An incident happened.",
+        Manager manager when manager.Club != null => $"{manager.Name} ({manager.Club})",
+        Manager manager => $"{manager.Name}",
+        _ => ""
 
-            if (currentMax > maxLength)
-            {
-                maxLength = currentMax;
-                longestPlot = plot;
-            }
-        }
-        return longestPlot;
+    };
 
+}
+
+public class Manager
+{
+    public string Name { get; }
+
+    public string? Club { get; }
+
+    public Manager(string name, string? club)
+    {
+        this.Name = name;
+        this.Club = club;
     }
 }
-// Distance between 2 coordinates: `√((x₂-x₁)² + (y₂-y₁)²)`
+
+public class Incident
+{
+    public virtual string GetDescription() => "An incident happened.";
+}
+
+public class Foul : Incident
+{
+    public override string GetDescription() => "The referee deemed a foul.";
+}
+
+public class Injury : Incident
+{
+    private readonly int player;
+
+    public Injury(int player)
+    {
+        this.player = player;
+    }
+
+    public override string GetDescription() => $"Player {player} is injured.";
+}
