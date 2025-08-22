@@ -1104,3 +1104,28 @@ switch (animal)
 }
 ```
 Distance between 2 coordinates: `√((x₂-x₁)² + (y₂-y₁)²)`
+
+# Tuples
+A tuple is a way to combine multiple values into a single object, like `(int, string)` for a pair of an integer and a string. They are value types.
+
+```c#
+// Basic tuple
+var tuple = (5, "hello"); // (int, string)
+Console.WriteLine(tuple.Item1); // 5
+Console.WriteLine(tuple.Item2); // "hello"
+
+//Return multiple values
+(int sum, int count) GetStats(int[] numbers)
+{
+    return (numbers.Sum(), numbers.Length);
+}
+
+// Group data
+var player = (number: 10, position: "striker");
+Console.WriteLine($"Player {player.number} is a {player.position}");
+
+// Deconstruction
+var (num, pos) = player; // Deconstruct into variables
+Console.WriteLine(num); // 10
+Console.WriteLine(pos); // "striker"
+```
