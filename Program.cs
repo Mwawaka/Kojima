@@ -53,7 +53,25 @@ public class ClaimsHandler
 
     public Plot GetClaimWithLongestSide()
     {
-        return new Plot();
+        Plot longestPlot = Claims.First();
+        double maxLength = 0;
+
+        foreach (Plot plot in Claims)
+        {
+            double width = Math.Sqrt(Math.Pow(plot.Coord2.X - plot.Coord1.X, 2) + Math.Pow(plot.Coord2.Y - plot.Coord1.Y, 2));
+
+            double height = Math.Sqrt(Math.Pow(plot.Coord3.X - plot.Coord1.X, 2) + Math.Pow(plot.Coord3.Y - plot.Coord1.Y, 2));
+
+            double currentMax = Math.Max(width, height);
+
+            if (currentMax > maxLength)
+            {
+                maxLength = currentMax;
+                longestPlot = plot;
+            }
+        }
+        return longestPlot;
 
     }
 }
+// Distance between 2 coordinates: `√((x₂-x₁)² + (y₂-y₁)²)`

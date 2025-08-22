@@ -1059,3 +1059,8 @@ struct Employee {
     }
   }
 ```
+
+
+
+
+Distance between 2 coordinates: `√((x₂-x₁)² + (y₂-y₁)²)`
