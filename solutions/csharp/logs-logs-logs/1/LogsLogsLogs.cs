@@ -1,4 +1,5 @@
-public enum LogLevel
+namespace LogLevels
+{public enum LogLevel
 {
     Unknown,
     Trace,
@@ -36,4 +37,4 @@ public static class LogLine
     }
 
     public static string OutputForShortLog(LogLevel logLevel, string message) => $"{(int)logLevel}:{message}";  
-}
+}}
