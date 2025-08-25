@@ -5,7 +5,7 @@ public static class Hamming
         int hammingDistance = 0;
         char[] first = firstStrand.ToCharArray();
         char[] second = secondStrand.ToCharArray();
-
+        Console.WriteLine($"first {first}");
         for (int i = 0; i < firstStrand.Length; i++)
         {
             if (first[i] != second[i])
@@ -15,9 +15,9 @@ public static class Hamming
         }
         return hammingDistance;
     }
-    public static void Main(string[] args)
-    {
-        int ham = Distance("GAGCCTACTAACGGGAT", "CATCGTAATGACGGCCT");
-        Console.WriteLine("Hamming Distance: {0}", ham);
-    }
 }
+
+int ham = Hamming.Distance("GAGCCTACTAACGGGAT", "CATCGTAATGACGGCCT");
+Console.WriteLine("Hamming Distance: {0}", ham);
+
+// dotnet script *.csx -to run scripts
