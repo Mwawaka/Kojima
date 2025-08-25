@@ -2,23 +2,11 @@ public class Robot
 {
     private static readonly Random _rand = new Random();
     private static readonly HashSet<string> _usedNames = new HashSet<string>();
-    private string _name;
-    public string Name
-    {
-        get
-        {
-            _name = string.IsNullOrEmpty(_name) ? GenerateRandomName() : _name;
-            return _name;
-        }
-        set
-        {
-            _name = value;
-        }
-    }
+    public string Name { get; private set; } = GenerateRandomName();
 
     public void Reset()
     {
-        _name = GenerateRandomName();
+        Name = GenerateRandomName();
     }
     public static string GenerateRandomName()
     {
