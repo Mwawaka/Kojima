@@ -470,6 +470,33 @@ enum Answer
     No = 5
 }
 ```
+## Flag Enums
+The C# enum type represents a fixed set of named constants (an enumeration).
+
+Normally, one enum member can only refer to exactly one of those named constants. However, sometimes it is useful to refer to more than one constant. To do so, one can annotate the enum with the Flags attribute
+
+A flags enum can be defined as follows (using binary integer notation 0b):
+
+```c#
+[Flags]
+enum PhoneFeatures
+{
+    Call = 0b00000001,
+    Text = 0b00000010
+}
+```
+A `PhoneFeatures` instance which value is 0b00000011 has both its Call and Text flags set.
+
+By default, the int type is used for enum member values. One can use a different integer type by specifying the type in the enum declaration:
+
+```c#
+[Flags]
+enum PhoneFeatures : byte
+{
+    Call = 0b00000001,
+    Text = 0b00000010
+}
+```
 # Datetimes
 A `DateTime` in C# is an `immutable` object that contains both date and time information. DateTime instances are manipulated by calling their methods. Once a DateTime has been constructed, its value can never change. Any methods that appear to modify a DateTime will actually return a new DateTime.
 
@@ -752,34 +779,6 @@ class MyClass
 This declarative metadata only associates additional structured information to the code and does not modify its behavior, but that metadata is used by other part of the code to change how its target would behave or add, change or remove, restrict some its functionalities.
 
 There are many predefined and reserved attributes, for example: `Flags, Obsolete, Conditional, and Experimental`. Each has a specific semantic meaning that can be looked up on the C# documentation. Note that the full name of an attribute like Flags takes the form <Name>Attribute (e.g. FlagsAttribute).
-
-## Flag Enums
-The C# enum type represents a fixed set of named constants (an enumeration).
-
-Normally, one enum member can only refer to exactly one of those named constants. However, sometimes it is useful to refer to more than one constant. To do so, one can annotate the enum with the Flags attribute
-
-A flags enum can be defined as follows (using binary integer notation 0b):
-
-```c#
-[Flags]
-enum PhoneFeatures
-{
-    Call = 0b00000001,
-    Text = 0b00000010
-}
-```
-A `PhoneFeatures` instance which value is 0b00000011 has both its Call and Text flags set.
-
-By default, the int type is used for enum member values. One can use a different integer type by specifying the type in the enum declaration:
-
-```c#
-[Flags]
-enum PhoneFeatures : byte
-{
-    Call = 0b00000001,
-    Text = 0b00000010
-}
-```
 
 # Generic Types
 A collection definition typically includes a place holder in angle brackets, often `T` by convention. 
