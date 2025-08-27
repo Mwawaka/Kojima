@@ -1,6 +1,6 @@
 public static class NucleotideCount
 {
-    private static readonly char[] _nucleotides = { 'A', 'C', 'G', 'T' };
+    private static readonly HashSet<char> _nucleotides = new HashSet<char> { 'A', 'C', 'G', 'T' };
     public static IDictionary<char, int> Count(string sequence)
     {
         IDictionary<char, int> nucleotideCount = new Dictionary<char, int>{
