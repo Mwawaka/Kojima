@@ -1,27 +1,27 @@
-public static class NucleotideCount
+public class GradeSchool
 {
-    private static readonly HashSet<char> _nucleotides = new HashSet<char> { 'A', 'C', 'G', 'T' };
-    public static IDictionary<char, int> Count(string sequence)
+    private readonly IDictionary<string, int> _grade = new Dictionary<string, int>();
+    private readonly SortedSet<string> _roster = new SortedSet<string>();
+
+
+    public bool Add(string student, int grade)
     {
-        IDictionary<char, int> nucleotideCount = new Dictionary<char, int>{
-            {'A',0},
-            {'C',0},
-            {'G',0},
-            {'T',0}
-        };
-
-        if (string.IsNullOrEmpty(sequence)) return nucleotideCount;
-        if (!IsDnaStrand(sequence))
+        if (_roster.Contains(student))
         {
-            throw new ArgumentException("not a valid nucleotide sequence");
+            return false;
         }
-
-        foreach (char c in sequence)
-        {
-            nucleotideCount[c]++;
-        }
-        return nucleotideCount;
+        _roster.Add(student);
+        _grade[student] = grade;
+        return true;
     }
-    public static bool IsDnaStrand(string sequence) => sequence.All(c => _nucleotides.Contains(c));
 
+    public IEnumerable<string> Roster()
+    {
+        return _roster;
+    }
+
+    public IEnumerable<string> Grade(int grade)
+    {
+        return _grade.Where(g => g.Value == grade).Select(g => g.Key);
+    }
 }
