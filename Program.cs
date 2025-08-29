@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Item
 {
-    public string name = "Unnamed Item";
-    public int worth = 1;
-    public bool canBeSold = true;
+    public string Name{ get; set; } = "Unnamed Item";
+    public int Worth = 1;
+    public bool CanBeSold = true;
 }
 public class Junta : MonoBehaviour
 {
@@ -14,9 +14,11 @@ public class Junta : MonoBehaviour
     void Start()
     {
         Item item = new Item();
-        item.name = "Junta";
-        item.worth = 4;
-        item.canBeSold = true;
+        item.Name = "Junta";
+        item.Worth = 4;
+        item.CanBeSold = true;
+
+    
     }
 
     // Update is called once per frame
