@@ -11,6 +11,9 @@ public class Junta : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("The frames are updated per second");
+        if (Input.GetKeyDown("c"))
+        {
+            Debug.Log("C key was pressed");
+        }
     }
 }
