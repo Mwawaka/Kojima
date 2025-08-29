@@ -11,9 +11,9 @@ public class Junta : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("c"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("C key was pressed");
+            Debug.Log("Going to space ASAP");
         }
     }
 }
