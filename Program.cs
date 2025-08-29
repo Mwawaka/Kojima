@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Item
 {
-    public string Name{ get; set; } = "Unnamed Item";
+    public string Name { get; set; } = "Unnamed Item";
     public int Worth = 1;
     public bool CanBeSold = true;
 }
@@ -17,8 +17,8 @@ public class Junta : MonoBehaviour
         item.Name = "Junta";
         item.Worth = 4;
         item.CanBeSold = true;
+        Debug.Log($"This {item.Name} is worth {item.Worth} golden coins");
 
-    
     }
 
     // Update is called once per frame
