@@ -31,6 +31,7 @@ public class Equipment : Item
 {
     public int CurrentDurability = 100;
     public int MaximumDurability = 100;
+
     public Equipment(int worth, string name, bool canBeSold, int maximumDurability) : base(worth, name, canBeSold)
     {
         MaximumDurability = maximumDurability;
@@ -52,6 +53,7 @@ public class Weapon : Equipment
         AttackTime = attackTime;
     }
 }
+
 public class Armor : Equipment
 {
     public ArmorType Type = ArmorType.Helmet;
@@ -62,10 +64,17 @@ public class Armor : Equipment
         Defense = defense;
     }
 }
+
 public class SimpleRotation : MonoBehaviour
 {
     [Header("Rotato")]
     public Vector3 RotationPerSecond;
+
+    void Start()
+    {
+        Item item = new Weapon(90, "Rusty Axe", false, 100, WeaponType.Axe, 3, 11, .3f);
+        Weapon weapon = (Weapon)item;
+    }
     void Update()
     {
         transform.Rotate(RotationPerSecond * Time.deltaTime, 2.3f);
