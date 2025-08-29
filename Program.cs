@@ -3,9 +3,15 @@ using UnityEngine;
 
 public class Item
 {
-    public string Name { get; set; } = "Unnamed Item";
-    public int Worth = 1;
-    public bool CanBeSold = true;
+    public string Name;
+    public int Worth;
+    public bool CanBeSold;
+    public Item(string name, string worth, string canBeSold)
+    {
+        Name = name;
+        Worth = worth;
+        CanBeSold = canBeSold;
+    }
 }
 public class Junta : MonoBehaviour
 {
