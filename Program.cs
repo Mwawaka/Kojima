@@ -73,7 +73,10 @@ public class SimpleRotation : MonoBehaviour
     void Start()
     {
         Item item = new Weapon(90, "Rusty Axe", false, 100, WeaponType.Axe, 3, 11, .3f);
+
         Weapon weapon = (Weapon)item;
+
+        Debug.Log($"The {weapon.Name} costs {weapon.Worth} gold coints. It has {weapon.MaximumDurability}maximum durability.");
     }
     void Update()
     {
